@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tenant Estoppel Certificate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; }
         h2 { color: #333; }
         label { display: block; margin-top: 15px; font-weight: bold; }
-        input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
+        input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
         .small { width: 300px; }
-        button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
-        #signature-pad { border: 1px solid #ccc; width: 400px; height: 200px; }
+        button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #signature-pad { border: 1px solid #ccc; width: 400px; height: 200px; background-color: #fff; }
+        .form-section { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
+<div class="form-section">
 <h2>Tenant Estoppel Certificate / Verification of Lease Terms</h2>
 
-<p>Please complete this form and submit it securely. After submission, you will be redirected to a Thank You page.</p>
+<p>Please complete this form securely. After submission, you will be redirected to a Thank You page.</p>
 
 <form id="estoppelForm" action="https://formspree.io/f/mdkyonqp" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="_replyto" value="khlowther@gmail.com">
@@ -69,6 +72,7 @@
 
     <button type="submit" onclick="prepareSignature(event)">Submit Form</button>
 </form>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
 <script>
@@ -93,7 +97,6 @@
                 document.getElementById("estoppelForm").submit();
             });
         } else {
-            // Submit form if no signature
             document.getElementById("estoppelForm").submit();
         }
     }
