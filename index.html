@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tenant Estoppel Certificate</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h2 { color: #333; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; }
+        .small { width: 300px; }
+        button { margin-top: 20px; padding: 10px 20px; font-size: 16px; }
+        #signature-pad { border: 1px solid #ccc; width: 400px; height: 200px; }
+    </style>
+</head>
+<body>
+
+<h2>Tenant Estoppel Certificate / Verification of Lease Terms</h2>
+
+<p>Please complete this form and submit it. A copy will be emailed to: <strong>khlowther@gmail.com</strong></p>
+
+<form id="estoppelForm" action="mailto:khlowther@gmail.com" method="post" enctype="text/plain">
+
+    <label>Do you have a written and fully executed lease agreement?</label>
+    <select name="lease_agreement" class="small">
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    <label>If yes, please list attached documents:</label>
+    <textarea name="attached_docs" rows="3"></textarea>
+
+    <label>Original lease commencement date:</label>
+    <input type="text" name="commencement">
+
+    <label>Lease expiration date:</label>
+    <input type="text" name="expiration">
+
+    <label>Renewal options:</label>
+    <textarea name="renewal" rows="2"></textarea>
+
+    <label>Current monthly rent amount:</label>
+    <input type="text" name="rent">
+
+    <label>Security deposit originally provided:</label>
+    <input type="text" name="deposit">
+
+    <label>Description of the space you occupy:</label>
+    <textarea name="space" rows="3"></textarea>
+
+    <label>Other agreements or understandings:</label>
+    <textarea name="other" rows="3"></textarea>
+
+    <h3>Digital Signature</h3>
+    <p>Please sign below:</p>
+    <canvas id="signature-pad"></canvas><br>
+    <button type="button" onclick="clearPad()">Clear Signature</button>
+    <input type="hidden" name="signature" id="signatureField">
+
+    <h3>Landlord Contact</h3>
+    <p>
+        <strong>Kelly Lowther</strong><br>
+        Managing Member, Miramont Fort Collins LLC<br>
+        Email: khlowther@gmail.com<br>
+        Phone: 970-980-7235
+    </p>
+
+    <button type="submit" onclick="saveSignature()">Submit Form</button>
+
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+<script>
+    const canvas = document.getElementById("signature-pad");
+    const signaturePad = new SignaturePad(canvas);
+
+    function clearPad() {
+        signaturePad.clear();
+    }
+
+    function saveSignature() {
+        if (!signaturePad.isEmpty()) {
+            document.getElementById("signatureField").value = signaturePad.toDataURL();
+        }
+    }
+</script>
+
+</body>
+</html>
